@@ -1,0 +1,16 @@
+<head>
+  <title>Cave Leaderboard</title>
+</head>
+
+<body>
+  <h1>the Cave!</h1>
+  {{> leaderboard}}
+</body>
+
+<template name="leaderboard">
+  <ul>
+    {{#each players}}
+      <li class="player {{selectedClass}}">{{name}}: {{score}}</li>
+    {{/each}}
+  </ul>
+</template>
