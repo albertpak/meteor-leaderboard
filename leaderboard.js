@@ -13,6 +13,11 @@ if (Meteor.isClient) {
         return 'selected';
       }
     },
+
+    showSelectedPlayer: function() {
+      var selectedPlayer = Session.get('selectedPlayer');
+      return PlayersList.findOne(selectedPlayer);
+    },
   });
 
   Template.leaderboard.events({
