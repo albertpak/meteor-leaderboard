@@ -5,6 +5,7 @@
 <body>
   <h1>the Cave!</h1>
   {{> leaderboard}}
+  {{> addPlayerForm}}
 </body>
 
 <template name="leaderboard">
@@ -12,10 +13,21 @@
     {{#each players}}
       <li class="player {{selectedClass}}">{{name}}: {{score}}</li>
     {{/each}}
-    <li><input type="button" id="increment" value="Give 5 pts" /></li>
+    <li>
+      <input type="button" id="increment" value="Give 5 pts" />
+      <input type="button" id="decrement" value="Remove 5 pts" />
+      <input type="button" id="remove" value="Remove Player" />
+    </li>
     {{#if showSelectedPlayer}}
       <li>------</li>
       <li>{{showSelectedPlayer.name}}</li>
     {{/if}}
   </ul>
+</template>
+
+<template name="addPlayerForm">
+  <form>
+    <input type="text" id="playerName" />
+    <input type="submit" value="Add Player" />
+  </form>
 </template>
