@@ -3,7 +3,9 @@ PlayersList = new Meteor.Collection('players');
 if (Meteor.isClient) {
   Template.leaderboard.helpers({
     players: function() {
-      return PlayersList.find({}, {sort: {score: -1, name: 1}});
+      var currentUserId = Meteor.userId();
+
+      return PlayersList.find({ createdBy: currentUserId }, {sort: {score: -1, name: 1}});
     },
 
     selectedClass: function() {
@@ -46,10 +48,14 @@ if (Meteor.isClient) {
   Template.addPlayerForm.events({
     'submit form': function(event, template) {
       event.preventDefault();
+
       var playerName = template.find('#playerName').value;
+      var currentUserId = Meteor.userId();
+
       PlayersList.insert({
         name: playerName,
         score: 0,
+        createdBy: currentUserId,
       });
     },
   });

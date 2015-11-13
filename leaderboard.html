@@ -4,6 +4,9 @@
 
 <body>
   <h1>the Cave!</h1>
+  <hr>
+  {{> loginButtons}}
+  <hr>
   {{> leaderboard}}
   {{> addPlayerForm}}
 </body>
@@ -26,8 +29,10 @@
 </template>
 
 <template name="addPlayerForm">
-  <form>
-    <input type="text" id="playerName" />
-    <input type="submit" value="Add Player" />
-  </form>
+  {{#if currentUser}}
+    <form>
+      <input type="text" id="playerName" />
+      <input type="submit" value="Add Player" />
+    </form>
+  {{/if}}
 </template>
