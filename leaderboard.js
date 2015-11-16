@@ -1,14 +1,13 @@
 PlayersList = new Meteor.Collection('players');
 
 if (Meteor.isClient) {
-
   Meteor.subscribe('thePlayers');
 
   Template.leaderboard.helpers({
     players: function() {
       var currentUserId = Meteor.userId();
 
-      return PlayersList.find({ createdBy: currentUserId }, {sort: {score: -1, name: 1}});
+      return PlayersList.find({}, {sort: {score: -1, name: 1}});
     },
 
     selectedClass: function() {
@@ -66,6 +65,7 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.publish('thePlayers', function() {
-    return PlayersList.find();
+    var currentUserId = this.userId;
+    return PlayersList.find({ createdBy: currentUserId });
   });
 }
