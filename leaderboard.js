@@ -48,10 +48,10 @@ if (Meteor.isClient) {
   });
 
   Template.addPlayerForm.events({
-    'submit form': function(event, template) {
+    'submit form': function(event) {
       event.preventDefault();
 
-      var playerName = template.find('#playerName').value;
+      var playerName = event.target.playerName.value;
       var currentUserId = Meteor.userId();
 
       Meteor.call('insertPlayerData', playerName);
